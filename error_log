@@ -1,0 +1,2 @@
+[29-Apr-2025 17:30:27 UTC] PHP Warning:  Module "pdo_sqlsrv" is already loaded in Unknown on line 0
+[29-Apr-2025 17:30:27 UTC] PHP Warning:  Module "sqlsrv" is already loaded in Unknown on line 0

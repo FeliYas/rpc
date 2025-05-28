@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wdth,wght@0,75..100,100..900;1,75..100,100..900&display=swap');
+@import 'tailwindcss';
+
+
+
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+@layer base {
+    body {
+        font-family: 'Roboto', sans-serif;
+    }
+}
+
+@layer utilities {
+    .scrollbar-custom::-webkit-scrollbar {
+      width: 6px;
+    }
+  
+    .scrollbar-custom::-webkit-scrollbar-track {
+      background: #e4e4e4;
+      border-radius: 8px;
+    }
+  
+    .scrollbar-custom::-webkit-scrollbar-thumb {
+      background-color: #0D8141;
+      border-radius: 8px;
+    }
+  
+    .scrollbar-custom {
+      scrollbar-color: #0D8141 #e4e4e4;
+      scrollbar-width: thin;
+    }
+  }
+  
+.custom-container ul,
+.custom-container ol {
+  list-style: initial;
+  padding-left: 1rem; 
+}
+
+.custom-container h1,
+.custom-container h2,
+.custom-container h3,
+.custom-container h4,
+.custom-container h5,
+.custom-container h6 {
+  margin: revert; 
+  font-size: revert; 
+  font-weight: revert; 
+}
+.custom-summernote > ul{
+    /* list-style-type: disc !important; */
+    all: revert !important;
+    
+}
+.bg-main-color{
+    background-color: #0D8141;
+}
+.text-main-color{
+    color: #0D8141;
+}
+.border-main-color{
+    border-color: #0D8141;
+}
+.hover-border-main-color:hover{
+    border-color: #0D8141;
+}
+input:focus {
+    border-color: #0D8141;
+    box-shadow: 0 0 0 3px rgba(13, 129, 65, 0.25);
+    outline: none;
+    transition: all 0.1s ease-in-out; /* Transición suave */
+    box-shadow: 0 0 10px rgba(13, 129, 65, 0.3); /* Sombrita linda al pasar */
+    transform: scale(1.03); /* Ligeramente más grande al hacer hover */
+}
+.btn-primary {
+    background-color: #0D8141;
+    color: #fff;
+    padding-inline: 10px;
+    padding-block: 5px;
+    border-radius: 10px;
+    border: 1px solid #0D8141;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease-in-out; /* Transición suave */
+}
+
+.btn-primary:hover {
+    background-color: #FFF;
+    color: #0D8141;
+    box-shadow: 0 0 10px rgba(13, 129, 65, 0.3); /* Sombrita linda al pasar */
+    transform: scale(1.03); /* Ligeramente más grande al hacer hover */
+}
+.btn-secondary {
+    background-color: #FFF;
+    color: #0D8141;
+    padding-inline: 10px;
+    padding-block: 5px;
+    border-radius: 10px;
+    border: 1px solid #0D8141;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease-in-out; /* Transición suave */
+}
+
+.btn-secondary:hover {
+    background-color: #0D8141;
+    color: #FFF;
+    box-shadow: 0 0 10px rgba(13, 129, 65, 0.3); /* Sombrita linda al pasar */
+    transform: scale(1.03); /* Ligeramente más grande al hacer hover */
+}
+.btn-primary-home {
+    background-color: #0D8141;
+    color: #fff;
+    padding-inline: 20px;
+    padding-block: 10px;
+    border: 1px solid #0D8141;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease-in-out; /* Transición suave */
+    width: 184px !important;
+}
+.btn-primary-home:hover {
+    background-color: #FFF;
+    color: #0D8141;
+    box-shadow: 0 0 10px rgba(13, 129, 65, 0.3); /* Sombrita linda al pasar */
+    transform: scale(1.03); /* Ligeramente más grande al hacer hover */
+}
+.btn-secondary-home {
+    background-color: #FFF;
+    color: #0D8141;
+    padding-inline: 20px;
+    padding-block: 10px;
+    border: 1px solid #0D8141;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease-in-out; /* Transición suave */
+    width: 184px !important;
+}
+.btn-secondary-home:hover {
+    background-color: #0D8141;
+    color: #FFF;
+    box-shadow: 0 0 10px rgba(13, 129, 65, 0.3); /* Sombrita linda al pasar */
+    transform: scale(1.03); /* Ligeramente más grande al hacer hover */
+}
+.btn-primary-home-largo {
+    background-color: #0D8141;
+    color: #fff;
+    padding-inline: 20px;
+    padding-block: 10px;
+    border: 1px solid #0D8141;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease-in-out; /* Transición suave */
+}
+.btn-primary-home-largo:hover {
+    background-color: #FFF;
+    color: #0D8141;
+    box-shadow: 0 0 10px rgba(13, 129, 65, 0.3); /* Sombrita linda al pasar */
+    transform: scale(1.03); /* Ligeramente más grande al hacer hover */
+}
+
+.btn-secondary-home-largo {
+    background-color: #FFF;
+    color: #0D8141;
+    padding-inline: 20px;
+    padding-block: 10px;
+    border: 1px solid #0D8141;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease-in-out; /* Transición suave */
+}
+.btn-secondary-home-largo:hover {
+    background-color: #0D8141;
+    color: #FFF;
+    box-shadow: 0 0 10px rgba(13, 129, 65, 0.3); /* Sombrita linda al pasar */
+    transform: scale(1.03); /* Ligeramente más grande al hacer hover */
+}
+.line-width {
+    width: 100px;
+    transform-origin: left;
+}
+
+.group:hover .line-width {
+    width: 100%;
+}
+.titulo-home{
+    font-size: 40px;
+    font-weight: 700;
+}
+@media (max-width: 640px) {
+    .titulo-home {
+        font-size: 22px; /* Más chico aún */
+        text-align: center;
+        line-height: 1.2;
+    }
+
+    .btn-primary-home,
+    .btn-secondary-home {
+        font-size: 13px;
+        padding-inline: 12px;
+        padding-block: 6px;
+        max-width: 140px;
+    }
+
+    .btn-primary-home-largo,
+    .btn-secondary-home-largo {
+        font-size: 13px;
+        padding-inline: 12px;
+        padding-block: 6px;
+        width: 100%;
+    }
+}
+
+
