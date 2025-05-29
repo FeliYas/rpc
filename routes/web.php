@@ -148,6 +148,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/dashboard/facturas/store', [FacturaController::class, 'store'])->name('facturas.store');
     Route::put('/dashboard/facturas/update/{id}', [FacturaController::class, 'update'])->name('facturas.update');
     Route::delete('/dashboard/facturas/delete/{id}', [FacturaController::class, 'destroy'])->name('facturas.destroy');
+    Route::get('/dashboard/facturas/imprimir/{id}', [FacturaController::class, 'imprimirPDF'])->name('facturas.imprimir');
+    Route::post('/dashboard/facturas/imprimir-multiples', [FacturaController::class, 'imprimirMultiplesPDF'])->name('facturas.imprimir.multiples');
+    Route::post('/dashboard/facturas/resumen-pdf', [FacturaController::class, 'resumenPDF'])->name('facturas.resumen.pdf');
 
     //rutas de los logos del dashboard
     Route::get('/dashboard/logos', [LogosController::class, 'index'])->name('logos.dashboard');
