@@ -218,18 +218,43 @@
                         </li>
                     </ul>
                 </li>
-                {{-- <li>
-                    <a href="{{ route('iva.dashboard') }}"
-                        class="grid grid-cols-[24px_1fr_24px] items-center gap-3 px-4 py-3 text-white hover:bg-white/10 rounded-lg transition-all duration-200 group relative overflow-hidden">
-                        <div
-                            class="absolute left-0 top-0 h-full w-0 bg-white/10 transition-all duration-300 group-hover:w-full rounded-lg">
-                        </div>
-                        
+                <li>
+                    <button
+                        class="w-full text-left text-white grid grid-cols-[24px_1fr_24px] items-center gap-3 px-4 py-3 hover:bg-white/10 rounded-lg transition-all duration-200 group"
+                        onclick="toggleSubMenuHome('sueldosSubmenu')">
+                        <i class="fa-solid fa-dollar-sign text-center w-5 text-white relative z-10"></i>
                         <span
-                            class="whitespace-nowrap group-hover:translate-x-1 transition-transform duration-200 relative z-10">IVA</span>
-                        <span class="relative z-10"></span>
-                    </a>
-                </li> --}}
+                            class="whitespace-nowrap group-hover:translate-x-1 transition-transform duration-200">Sueldos</span>
+                        <svg class="ml-auto w-4 h-4 transition-transform duration-300" id="sueldosSubmenuIcon"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+
+                    <ul id="sueldosSubmenu" class="relative overflow-hidden transition-all duration-300 max-h-0 mt-1">
+
+                        <div class="absolute left-6 w-0.5 h-25 bg-gray-200 opacity-80 rounded-sm mr-3"></div>
+                        <li>
+                            <a href="{{ route('empleados.dashboard') }}"
+                                class="block pl-10 py-2 text-gray-200 hover:text-white rounded-lg transition-all duration-200 my-1">
+                                <span class="opacity-80 hover:opacity-100 transition-opacity flex items-center">
+                                    <i class="fa-solid fa-address-book w-5 mr-2 text-xs"></i>
+                                    Empleados
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('facturas.dashboard') }}"
+                                class="block pl-10 py-2 text-gray-200 hover:text-white rounded-lg transition-all duration-200 my-1">
+                                <span class="opacity-80 hover:opacity-100 transition-opacity flex items-center">
+                                    <i class="fa-solid fa-file-invoice-dollar w-5 mr-2 text-xs"></i>
+                                    Liquidaciones
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li>
                     <a href="{{ route('logos.dashboard') }}"
                         class="grid grid-cols-[24px_1fr_24px] items-center gap-3 px-4 py-3 text-white hover:bg-white/10 rounded-lg transition-all duration-200 group relative overflow-hidden">

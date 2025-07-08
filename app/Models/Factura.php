@@ -14,6 +14,7 @@ class Factura extends Model
         'puntoventa',
         'nrofactura',
         'proveedor_id',
+        'moneda',
         'tipo_cambio',
         'importe_total'
     ];

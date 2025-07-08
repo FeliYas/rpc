@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
+
     <title>RPC - @yield('title')</title>
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
@@ -25,9 +25,9 @@
 
 <body class="min-h-screen flex max-w-screen">
     <x-sidebar class="fixed top-0 left-0 h-full w-64 text-white overflow-hidden" :logo="$logo" />
-    <div class="flex-1 ml-62.5"> <!-- Cambié ml-64 por pl-64 -->
+    <div class="flex-1 ml-64 min-w-0"> <!-- ml-64 para dejar espacio al sidebar, min-w-0 para evitar overflow -->
         <x-navbar-dashboard />
-        <main class="overflow-y-auto overflow-x-hidden h-full relative z-5 max-w-full">
+        <main class="overflow-y-auto overflow-x-hidden h-full relative z-5" style="max-width:calc(100vw - 256px);">
             <div class="p-8 h-full relative z-5">
                 @yield('content')
             </div>

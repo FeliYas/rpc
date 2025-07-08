@@ -8,6 +8,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\ContenidoController;
 use App\Http\Controllers\DescuentoController;
+use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LogosController;
@@ -148,6 +149,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/dashboard/facturas/store', [FacturaController::class, 'store'])->name('facturas.store');
     Route::put('/dashboard/facturas/update/{id}', [FacturaController::class, 'update'])->name('facturas.update');
     Route::delete('/dashboard/facturas/delete/{id}', [FacturaController::class, 'destroy'])->name('facturas.destroy');
+    Route::get('/dashboard/facturas/imprimir/{id}', [FacturaController::class, 'imprimirPDF'])->name('facturas.imprimir');
+    Route::post('/dashboard/facturas/imprimir-multiples', [FacturaController::class, 'imprimirMultiplesPDF'])->name('facturas.imprimir.multiples');
+    Route::post('/dashboard/facturas/resumen-pdf', [FacturaController::class, 'resumenPDF'])->name('facturas.resumen.pdf');
+
+//rutas de los empleados del dashboard
+    Route::get('/dashboard/empleados', [EmpleadoController::class, 'index'])->name('empleados.dashboard');
+    Route::post('/dashboard/empleados/store', [EmpleadoController::class, 'store'])->name('empleados.store');
+    Route::put('/dashboard/empleados/update/{id}', [EmpleadoController::class, 'update'])->name('empleados.update');
+    Route::delete('/dashboard/empleados/delete/{id}', [EmpleadoController::class, 'destroy'])->name('empleados.destroy');
 
     //rutas de los logos del dashboard
     Route::get('/dashboard/logos', [LogosController::class, 'index'])->name('logos.dashboard');

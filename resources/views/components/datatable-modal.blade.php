@@ -37,7 +37,7 @@
 
 
     <!-- Tabla con diseño minimalista -->
-    <div class="bg-white rounded-lg shadow-2xl max-w-screen overflow-x-auto">
+    <div class="bg-white rounded-lg shadow-2xl max-w-screen overflow-x-auto relative group">
         <table class="w-full">
             <thead>
                 <tr class="bg-gray-200 border-b">
@@ -45,41 +45,59 @@
                         @if ($column !== 'password')
                             @if ($column == 'path')
                                 <th
-                                    class="px-6 py-4 text-center text-xs font-medium text-main-color uppercase tracking-wider">
+                                    class="px-2 py-4 text-center text-xs font-medium text-main-color uppercase tracking-wider">
                                     Imagen
                                 </th>
                             @elseif($column == 'categoria_id')
                                 <th
-                                    class="px-6 py-4 text-center text-xs font-medium text-main-color uppercase tracking-wider">
+                                    class="px-2 py-4 text-center text-xs font-medium text-main-color uppercase tracking-wider">
                                     Categoria
                                 </th>
                             @elseif($column == 'producto_id')
                             @elseif($column == 'descripcion')
+                            @elseif($column == 'observaciones')
+                            @elseif($column == 'domicilio')
+                            @elseif($column == 'pais')
+                            @elseif($column == 'valor_hora')
+                                <th
+                                    class="px-2 py-4 text-center text-xs font-medium text-main-color uppercase w-40 tracking-wider">
+                                    Valor hora
+                                </th>
+                            @elseif($column == 'cantidad_horas')
+                                <th
+                                    class="px-2 py-4 text-center text-xs font-medium text-main-color uppercase w-20 tracking-wider">
+                                    Cantidad horas por dia
+                                </th>
+                            @elseif($column == 'en_blanco')
+                                <th
+                                    class="px-2 py-4 text-center text-xs font-medium text-main-color uppercase w-40 tracking-wider">
+                                    ¿En blanco?
+                                </th>
                             @elseif($column == 'cantidad_minima')
                                 <th
-                                    class="px-6 py-4 text-center text-xs font-medium text-main-color uppercase tracking-wider">
+                                    class="px-2 py-4 text-center text-xs font-medium text-main-color uppercase tracking-wider">
                                     Cantidad mínima
                                 </th>
                                 
                             @elseif($column == 'direfiscal')
                                 <th
-                                    class="px-6 py-4 text-center text-xs font-medium text-main-color uppercase tracking-wider">
+                                    class="px-2 py-4 text-center text-xs font-medium text-main-color uppercase tracking-wider">
                                     Direccion fiscal
                                 </th>
                             @elseif($column == 'unidad')
                                 <th
-                                    class="px-6 py-4 text-center text-xs font-medium text-main-color uppercase tracking-wider">
+                                    class="px-2 py-4 text-center text-xs font-medium text-main-color uppercase tracking-wider">
                                     Unidad de venta
                                 </th>
                             @else
                                 <th
-                                    class="px-6 py-4 text-center text-xs font-medium text-main-color uppercase tracking-wider">
+                                    class="px-2 py-4 text-center text-xs w-40 font-medium text-main-color uppercase tracking-wider">
                                     {{ ucfirst($column) }}
                                 </th>
                             @endif
                         @endif
                     @endforeach
-                    <th class="px-6 py-4 text-center text-xs font-medium text-main-color uppercase tracking-wider">
+                    <th class="px-2 py-4 text-center text-xs font-medium text-main-color w-40  uppercase tracking-wider">
                         Acciones</th>
                 </tr>
             </thead>
@@ -87,7 +105,7 @@
                 @if ($data->isEmpty())
                     <tr class="hover:bg-gray-200 transition-colors duration-200">
                         <td colspan="{{ count($columns) + 1 }}"
-                            class="px-6 py-4 whitespace-nowrap text-sm text-center text-gray-700">
+                            class="px-2 py-4 whitespace-nowrap text-sm text-center text-gray-700">
                             No hay datos disponibles
                         </td>
                     </tr>
@@ -97,7 +115,7 @@
                             @foreach ($columns as $column)
                                 @if ($column !== 'password')
                                     @if ($column == 'path')
-                                        <td class="h-[100px] px-6 py-4 whitespace-nowrap flex justify-center">
+                                        <td class="h-[100px] px-2 py-4 whitespace-nowrap flex justify-center">
                                             @if ($row->path)
                                                 <img src="{{ asset('storage/' . $row->path) }}"
                                                     alt="Imagen del producto">
@@ -114,25 +132,25 @@
                                             @endif
                                         </td>
                                         @elseif ($column == 'Numero de pedido')
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-center text-gray-700">
+                                        <td class="px-2 py-4 whitespace-nowrap text-sm text-center text-gray-700">
                                             {{ $row->getNumeroPedidoAttribute() }}
                                         </td>
                                     @elseif ($column == 'Email cliente')
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-center text-gray-700">
+                                        <td class="px-2 py-4 whitespace-nowrap text-sm text-center text-gray-700">
                                             {{ $row->cliente ? $row->cliente->email : 'Sin email' }}
                                         </td>
                                     @elseif ($column == 'Metodo de entrega')
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-center text-gray-700">
+                                        <td class="px-2 py-4 whitespace-nowrap text-sm text-center text-gray-700">
                                             {{ $row->getTipoEntregaAttribute() }}
                                         </td>
                                     @elseif ($column == 'mensaje')
-                                        <td class="px-6 py-4 text-sm text-center text-gray-700">
+                                        <td class="px-2 py-4 text-sm text-center text-gray-700">
                                             <div class="max-h-[100px] overflow-y-auto scrollbar-custom">
                                                 {{ $row->mensaje ?? 'Sin mensaje' }}
                                             </div>
                                         </td>
                                     @elseif ($column == 'archivo')
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-center text-gray-700">
+                                        <td class="px-2 py-4 whitespace-nowrap text-sm text-center text-gray-700">
                                             @if ($row->archivo)
                                                 <a href="{{ asset('storage/' . $row->archivo) }}" target="_blank"
                                                     class="flex justify-center">
@@ -159,7 +177,7 @@
                                             @endif
                                         </td>
                                     @elseif ($column == 'completado')
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-center text-gray-700">
+                                        <td class="px-2 py-4 whitespace-nowrap text-sm text-center text-gray-700">
                                             <div class="flex justify-center gap-3">
                                                 <span id="status-{{ $row->id }}" class="px-3 py-1 rounded-full {{ $row->completado ? 'bg-green-100 text-green-800' : 'bg-orange-100 text-orange-800' }}">
                                                     {{ $row->getEstadoAttribute() }}
@@ -175,7 +193,7 @@
                                             </div>
                                         </td>
                                     @elseif ($column == 'caracteristicas')
-                                        <td class="px-6 py-4 text-sm text-left text-gray-700">
+                                        <td class="px-2 py-4 text-sm text-left text-gray-700">
                                             <div class="flex flex-col items-center gap-2 text-center">
                                                 <a href="{{ route('caracteristicas.dashboard', $row->id) }}"
                                                     class="text-gray-500 hover:text-[#0D8141] transition duration-200">
@@ -192,7 +210,7 @@
                                             </div>
                                         </td>
                                     @elseif ($column == 'imagenes')
-                                        <td class="px-6 py-4 text-sm text-left text-gray-700">
+                                        <td class="px-2 py-4 text-sm text-left text-gray-700">
                                             <div class="flex flex-col items-center gap-2 text-center">
                                                 <a href="{{ route('imagenes.dashboard', $row->id) }}"
                                                     class="text-gray-500 hover:text-[#0D8141] transition duration-200">
@@ -209,7 +227,7 @@
                                             </div>
                                         </td>
                                     @elseif ($column == 'productos participantes')
-                                        <td class="px-6 py-4 text-sm text-left text-gray-700">
+                                        <td class="px-2 py-4 text-sm text-left text-gray-700">
                                             <div class="flex flex-col items-center gap-2 text-center">
                                                 <a href="{{ route('participantes.dashboard', $row->id) }}"
                                                     class="text-gray-500 hover:text-[#0D8141] transition duration-200">
@@ -226,7 +244,7 @@
                                             </div>
                                         </td>
                                     @elseif($column == 'titulo')
-                                        <td class="px-6 py-4 text-sm text-left text-gray-700 ">
+                                        <td class="px-2 py-4 text-sm text-left text-gray-700 ">
                                             <div class="h-[80px] overflow-auto scrollbar-custom">
                                                 {{ $row->titulo }}
                                             </div>
@@ -236,15 +254,15 @@
                                     @elseif ($column == 'producto_id')
 
                                     @elseif ($column == 'descuento')
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-center text-gray-700">
+                                        <td class="px-2 py-4 whitespace-nowrap text-sm text-center text-gray-700">
                                             {{ $row->descuento }}%
                                         </td>
                                     @elseif ($column == 'categoria_id')
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-center text-gray-700">
+                                        <td class="px-2 py-4 whitespace-nowrap text-sm text-center text-gray-700">
                                             {{ $row->categoria ? $row->categoria->titulo : 'Sin categoría' }}
                                         </td>
                                     @elseif ($column == 'ficha')
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-center text-gray-700">
+                                        <td class="px-2 py-4 whitespace-nowrap text-sm text-center text-gray-700">
                                             @if ($row->ficha)
                                                 <a href="{{ asset('storage/' . $row->ficha) }}" target="_blank"
                                                     class="flex justify-center">
@@ -271,7 +289,7 @@
                                             @endif
                                         </td>
                                     @elseif ($column == 'lista')
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-center text-gray-700">
+                                        <td class="px-2 py-4 whitespace-nowrap text-sm text-center text-gray-700">
                                             <a href="{{ asset('storage/' . $row->lista) }}" target="_blank"
                                                 class="flex justify-center">
                                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -312,13 +330,13 @@
                                             </div>
                                         </td>
                                     @else
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-center text-gray-700">
+                                        <td class="px-2 py-4 whitespace-nowrap text-sm text-center text-gray-700">
                                             {{ ucfirst($row[$column]) }}
                                         </td>
                                     @endif
                                 @endif
                             @endforeach
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                            <td class="px-2 py-4 whitespace-nowrap text-sm font-medium">
                                 <div class="flex justify-center space-x-2">
                                     <!-- Botón para ver productos -->
                                     @if (isset($pedidoInfo))
@@ -381,7 +399,7 @@
     <div class="absolute inset-0 bg-black opacity-60 backdrop-blur-sm transition-opacity duration-300"
         onclick="closeProductsModal('viewProductsModal')" id="productViewModalOverlay"></div>
 
-    <div class="relative w-full max-w-2xl z-50 transition-all duration-300 transform scale-95 opacity-0" id="viewProductsContent">
+    <div class="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto z-50 transition-all duration-300 transform scale-95 opacity-0" id="viewProductsContent">
         <div class="bg-white rounded-lg shadow-lg w-full overflow-hidden">
             <!-- Header -->
             <div class="bg-main-color bg-opacity-10 px-6 py-4 border-b border-main-color border-opacity-20">
@@ -490,7 +508,7 @@
         `;
         
         // Realizar la solicitud AJAX para obtener los productos del pedido
-        fetch(`/api/pedidos/${pedidoId}/productos`)
+        fetch(`/rpc/api/pedidos/${pedidoId}/productos`)
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
@@ -668,7 +686,7 @@
 
     function loadProducts() {
         // Fetch para obtener todos los productos que no están ya asociados al descuento
-        fetch(`/api/productos/disponibles/${{{ $descuentoid }}}`)
+        fetch(`/rpc/api/productos/disponibles/${{{ $descuentoid }}}`)
             .then(response => response.json())
             .then(data => {
                 allProducts = data;
@@ -1227,7 +1245,7 @@
                                             <svg class="w-5 h-5 text-gray-400" viewBox="0 0 20 20"
                                                 fill="currentColor">
                                                 <path fill-rule="evenodd"
-                                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4a1 1 0 010-1.414z"
                                                     clip-rule="evenodd" />
                                             </svg>
                                         </div>
@@ -1285,7 +1303,7 @@
                                             class="text-gray-500">(Sin comas, puntos o signos. Por ej: 10000)</span></label>
                                     <input type="number" name="precio" id="precio"
                                         class="w-full border border-gray-300 px-4 py-2 rounded-md focus:ring-2 focus:ring-opacity-50 focus:ring-main-color focus:border-main-color"
-                                        value="{{ old('precio') }}" required>
+                                        value="{{ $row->precio }}" required>
                                 @elseif ($column === 'descripcion')
                                     <label for="edit_{{ $column }}"
                                         class="block text-sm font-medium text-gray-700 mb-1">
@@ -1555,7 +1573,7 @@
 
         // Actualizar imagen si hay 'path'
         if (imgPreview && data.path) {
-            imgPreview.src = `/storage/${data.path}`;
+            imgPreview.src = `/rpc/storage/${data.path}`;
         }
 
         // Abrir el modal usando la función existente

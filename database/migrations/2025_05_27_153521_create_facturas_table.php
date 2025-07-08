@@ -15,7 +15,8 @@ return new class extends Migration
             $table->string('puntoventa', 10);
             $table->string('nrofactura', 20);
             $table->foreignId('proveedor_id')->constrained('proveedores')->onDelete('cascade');
-            $table->decimal('tipo_cambio', 15, 4);
+            $table->string('moneda', 3)->default('ARS');
+            $table->decimal('tipo_cambio', 15, 4)->nullable();
             $table->decimal('importe_total', 15, 2);
             $table->timestamps();
         });
