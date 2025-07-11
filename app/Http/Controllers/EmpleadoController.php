@@ -30,7 +30,6 @@ class EmpleadoController extends Controller
             'email' => 'nullable|email|max:255',
             'valor_hora' => 'required|numeric|min:0',
             'cantidad_horas' => 'required|integer|min:0',
-            'en_blanco' => 'boolean',
             'observaciones' => 'nullable|string',
         ]);
         
@@ -51,7 +50,6 @@ class EmpleadoController extends Controller
             'email' => $request->email,
             'valor_hora' => $request->valor_hora,
             'cantidad_horas' => $request->cantidad_horas,
-            'en_blanco' => $request->boolean('en_blanco'),
             'observaciones' => $request->observaciones,
         ]);
         
@@ -71,7 +69,6 @@ class EmpleadoController extends Controller
             'email' => 'nullable|email|max:255',
             'valor_hora' => 'nullable|numeric|min:0',
             'cantidad_horas' => 'nullable|integer|min:0',
-            'en_blanco' => 'boolean',
             'observaciones' => 'nullable|string',
         ]);
         
@@ -93,7 +90,6 @@ class EmpleadoController extends Controller
             'email' => $request->email,
             'valor_hora' => $request->valor_hora,
             'cantidad_horas' => $request->cantidad_horas,
-            'en_blanco' => $request->boolean('en_blanco'),
             'observaciones' => $request->observaciones,
         ]);
         
@@ -104,5 +100,13 @@ class EmpleadoController extends Controller
         $empleado = Empleado::findOrFail($id);
         $empleado->delete();
         return $this->success_response('Empleado eliminado exitosamente.');
+    }
+     public function toggleBlanco(Request $request)
+    {
+        $empleado = Empleado::findOrFail($request->id);
+        $empleado->en_blanco = $request->en_blanco ? 1 : 0;
+        $empleado->save();
+
+        return response()->json(['success' => true]);
     }
 }

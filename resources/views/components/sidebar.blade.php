@@ -245,7 +245,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('facturas.dashboard') }}"
+                            <a href="{{ route('liquidaciones.dashboard') }}"
                                 class="block pl-10 py-2 text-gray-200 hover:text-white rounded-lg transition-all duration-200 my-1">
                                 <span class="opacity-80 hover:opacity-100 transition-opacity flex items-center">
                                     <i class="fa-solid fa-file-invoice-dollar w-5 mr-2 text-xs"></i>

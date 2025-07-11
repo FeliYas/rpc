@@ -25,4 +25,14 @@ class Empleado extends Model
         'observaciones'
     ];
 
+    protected $casts = [
+        'en_blanco' => 'boolean',
+        'valor_hora' => 'decimal:2',
+        'cantidad_horas' => 'decimal:2'
+    ];
+
+    public function liquidaciones(): HasMany
+    {
+        return $this->hasMany(Liquidacion::class);
+    }
 }

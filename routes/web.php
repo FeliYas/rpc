@@ -11,6 +11,7 @@ use App\Http\Controllers\DescuentoController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LiquidacionController;
 use App\Http\Controllers\LogosController;
 use App\Http\Controllers\MetadatosController;
 use App\Http\Controllers\NewsletterController;
@@ -25,6 +26,7 @@ use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\ZonaController;
 use App\Models\Logo;
 use Illuminate\Support\Facades\Route;
+use Termwind\Components\Li;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -153,11 +155,21 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/dashboard/facturas/imprimir-multiples', [FacturaController::class, 'imprimirMultiplesPDF'])->name('facturas.imprimir.multiples');
     Route::post('/dashboard/facturas/resumen-pdf', [FacturaController::class, 'resumenPDF'])->name('facturas.resumen.pdf');
 
-//rutas de los empleados del dashboard
+    //rutas de los empleados del dashboard
     Route::get('/dashboard/empleados', [EmpleadoController::class, 'index'])->name('empleados.dashboard');
     Route::post('/dashboard/empleados/store', [EmpleadoController::class, 'store'])->name('empleados.store');
     Route::put('/dashboard/empleados/update/{id}', [EmpleadoController::class, 'update'])->name('empleados.update');
     Route::delete('/dashboard/empleados/delete/{id}', [EmpleadoController::class, 'destroy'])->name('empleados.destroy');
+    Route::post('/dashboard/empleados/blanco', [EmpleadoController::class, 'toggleBlanco'])->name('empleados.toggleBlanco');
+
+    //rutas de las liquidaciones del dashboard
+    Route::get('/dashboard/liquidaciones', [LiquidacionController::class, 'index'])->name('liquidaciones.dashboard');
+    Route::get('/dashboard/liquidaciones/create', [LiquidacionController::class, 'create'])->name('liquidaciones.create');
+    Route::post('/dashboard/liquidaciones/store', [LiquidacionController::class, 'store'])->name('liquidaciones.store');
+    Route::get('/dashboard/liquidaciones/{liquidacion}/edit', [LiquidacionController::class, 'edit'])->name('liquidaciones.edit');
+    Route::put('/dashboard/liquidaciones/{liquidacion}', [LiquidacionController::class, 'update'])->name('liquidaciones.update');
+    Route::delete('/dashboard/liquidaciones/{liquidacion}', [LiquidacionController::class, 'destroy'])->name('liquidaciones.destroy');
+    Route::get('/api/liquidaciones/dias-laborales', [LiquidacionController::class, 'getDiasLaborales'])->name('liquidaciones.dias');
 
     //rutas de los logos del dashboard
     Route::get('/dashboard/logos', [LogosController::class, 'index'])->name('logos.dashboard');

@@ -147,7 +147,7 @@
                 <th>Fecha</th>
                 <th>Número</th>
                 <th>Proveedor</th>
-                <th>Tipo Cambio</th>
+                <th>Moneda</th>
                 <th>Total</th>
             </tr>
         </thead>
@@ -166,11 +166,7 @@
                     <td>{{ $factura->puntoventa }}-{{ $factura->nrofactura }}</td>
                     <td>{{ $factura->proveedor->denominacion }}</td>
                     <td>
-                        @if ($factura->tipo_cambio == 0)
-                            Pesos
-                        @else
-                            ${{ number_format($factura->tipo_cambio, 4) }}
-                        @endif
+                        {{ $factura->moneda }}
                     </td>
                     <td>
                         ${{ number_format($totalOriginal, 2) }} {{ $moneda }}

@@ -193,9 +193,7 @@ class FacturaController extends Controller
             ->orderBy('fecha', 'desc')
             ->get();
         
-        // Calcular totales respetando el tipo de cambio individual de cada factura
-        $totalGravadoUSD = 0;
-        $totalIvaUSD = 0;
+        // Calcular totales siempre en ARS, convirtiendo USD según tipo de cambio individual
         $totalGravadoARS = 0;
         $totalIvaARS = 0;
         $totalGeneralARS = 0;
@@ -203,27 +201,26 @@ class FacturaController extends Controller
         foreach ($facturas as $factura) {
             if ($factura->detalles->isNotEmpty()) {
                 $detalle = $factura->detalles->first();
+                $tipoCambio = $factura->tipo_cambio ?? 1;
                 
-                // Sumar los montos en USD
-                $totalGravadoUSD += $detalle->gravado;
-                $totalIvaUSD += $detalle->iva_monto;
-                
-                // Calcular y sumar los montos en ARS usando el tipo de cambio individual
-                $totalGravadoARS += $detalle->gravado * $factura->tipo_cambio;
-                $totalIvaARS += $detalle->iva_monto * $factura->tipo_cambio;
+                // Si es USD, convertir a ARS usando el tipo de cambio individual
+                if ($factura->moneda === 'USD') {
+                    $totalGravadoARS += $detalle->gravado * $tipoCambio;
+                    $totalIvaARS += $detalle->iva_monto * $tipoCambio;
+                } else {
+                    // Si es ARS, sumar directamente
+                    $totalGravadoARS += $detalle->gravado;
+                    $totalIvaARS += $detalle->iva_monto;
+                }
             }
             
+            // El importe total ya está en ARS (se calcula en el frontend)
             $totalGeneralARS += $factura->importe_total;
         }
         
-        $totalGeneralUSD = $totalGravadoUSD + $totalIvaUSD;
-        
         $totales = [
-            'gravado_usd' => $totalGravadoUSD,
             'gravado_ars' => $totalGravadoARS,
-            'iva_usd' => $totalIvaUSD,
             'iva_ars' => $totalIvaARS,
-            'general_usd' => $totalGeneralUSD,
             'general_ars' => $totalGeneralARS,
             'cantidad' => $facturas->count()
         ];

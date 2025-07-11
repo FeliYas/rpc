@@ -250,6 +250,9 @@
                                             </div>
                                         </td>
                                     @elseif ($column == 'descripcion')
+                                    @elseif ($column == 'domicilio')
+                                    @elseif ($column == 'pais')
+                                    @elseif ($column == 'observaciones')
                                         
                                     @elseif ($column == 'producto_id')
 
@@ -323,6 +326,19 @@
                                                     <input type="checkbox" class="sr-only peer"
                                                         @if ($row->autorizado) checked @endif
                                                         onchange="toggleAutorizado({{ $row->id }}, this.checked)">
+                                                    <div
+                                                        class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#0D8141]">
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </td>
+                                    @elseif ($column === 'en_blanco')
+                                        <td>
+                                            <div class="flex justify-center">
+                                                <label class="relative inline-flex items-center cursor-pointer">
+                                                    <input type="checkbox" class="sr-only peer"
+                                                        @if ($row->en_blanco) checked @endif
+                                                        onchange="toggleBlanco({{ $row->id }}, this.checked)">
                                                     <div
                                                         class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#0D8141]">
                                                     </div>
@@ -991,7 +1007,20 @@
                                 @elseif ($column === 'imagenes')
 
                                 @elseif ($column === 'destacado')
+                                @elseif ($column === 'en_blanco')
                                 @elseif ($column === 'adword')
+                                @elseif ($column === 'valor_hora')
+                                    <label for="valor_hora"
+                                        class="block text-sm font-medium text-gray-700 mb-1">Valor de la hora</label>
+                                    <input type="number" name="valor_hora" id="valor_hora"
+                                        class="w-full border border-gray-300 px-4 py-2 rounded-md focus:ring-2 focus:ring-opacity-50 focus:ring-main-color focus:border-main-color"
+                                        value="{{ old('valor_hora') }}" required>
+                                @elseif ($column === 'cantidad_horas')
+                                    <label for="cantidad_hora"
+                                        class="block text-sm font-medium text-gray-700 mb-1">Cantidad de horas por dia</label>
+                                    <input type="number" name="cantidad_horas" id="cantidad_hora"
+                                        class="w-full border border-gray-300 px-4 py-2 rounded-md focus:ring-2 focus:ring-opacity-50 focus:ring-main-color focus:border-main-color"
+                                        value="{{ old('cantidad_hora') }}" required>
                                 @elseif ($column === 'role')
                                     <label for="edit_{{ $column }}"
                                         class="block text-sm font-medium text-gray-700 mb-1">Rol</label>
@@ -1160,7 +1189,21 @@
                                 @elseif ($column === 'autorizado')
 
                                 @elseif ($column === 'cuit')
+                                @elseif ($column === 'en_blanco')
+                                @elseif ($column === 'valor_hora')
+                                    <label for="edit_{{ $column }}"
+                                        class="block text-sm font-medium text-gray-700 mb-1">Valor de la hora</label>
+                                    <input type="number" name="{{ $column }}" id="edit_{{ $column }}"
+                                        class="w-full border border-gray-300 px-4 py-2 rounded-md focus:ring-2 focus:ring-opacity-50 focus:ring-main-color focus:border-main-color"
+                                        value="{{ old($column) }}" required>
 
+                                @elseif ($column === 'cantidad_horas')
+                                    <label for="edit_{{ $column }}"
+                                        class="block text-sm font-medium text-gray-700 mb-1">Cantidad de horas por
+                                        día</label>
+                                    <input type="number" name="{{ $column }}" id="edit_{{ $column }}"
+                                        class="w-full border border-gray-300 px-4 py-2 rounded-md focus:ring-2 focus:ring-opacity-50 focus:ring-main-color focus:border-main-color"
+                                        value="{{ old($column) }}" required>
                                 @elseif ($column === 'ficha')
                                     <label for="edit_{{ $column }}"
                                         class="block text-sm font-medium text-gray-700 mb-1">
@@ -1622,6 +1665,27 @@
                 }
             });
     }
+    function toggleBlanco(id, isChecked) {
+        fetch("{{ route('empleados.toggleBlanco') }}", {
+            method: "POST",
+            headers: {
+                "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                id: id,
+                en_blanco: isChecked ? 1 : 0
+            })
+        }).then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log("Empleado actualizado correctamente");
+            } else {
+                console.error("Error al actualizar el estado del empleado");
+            }
+        });
+    }
+
     function toggleCompletado(id, isChecked) {
         fetch("{{ route('pedidos.toggleCompletado') }}", {
             method: "POST",
